@@ -1,0 +1,30 @@
+Id,libelle
+11,Mattel
+5,Mauritel
+2,Chinguitel
+7,BPM
+8,Banque Centrale
+10,BMCI
+14,BMI
+15,BNM
+16,AMANA
+17,BIM
+18,MAURIPOST
+19,IBM
+20,DGTIC CNC
+21,BCI
+22,Education
+23,Attijari Bank
+24,Les Impôts
+25,gaza telecom
+26,TAAZOUR
+27,BAMIS
+28,Chinguitty Bank
+29,mauritanie-pay
+30,ecash
+31,moov-money
+32,somelec
+33,DFI
+35,MASEF
+36,education2
+37,MIDEC PARTIS

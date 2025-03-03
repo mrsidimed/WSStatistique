@@ -1,0 +1,90 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2016-12-20, 10:30:40
+    Author     : Ahmed Mohamed Salem
+*/
+
+.restablepdf{
+    border:1px green solid;
+    border-collapse: collapse;
+}
+
+.syntesetablepdf{
+    border:1px gray solid;
+    border-collapse: collapse;
+}
+
+BODY {
+    font-family:  "Times New Roman", Georgia, Serif; 
+    background-color: #ffffff; 
+    font-size: 14px;
+    height: 72em;
+}
+
+/*TR { 
+    page-break-inside: avoid;  
+} */
+
+table, tr, td, th, tbody, thead, tfoot {
+    /*page-break-inside: avoid;*/
+}
+
+TBODY{
+    /*border-color: green;
+    border-width: 1px;*/
+}
+
+TD:not(.exception) {
+    text-align: left;
+    border:1px green solid;
+    font-size: 14px;   
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+TH{
+    text-align: left;
+    border:1px green solid;
+    font-size: 14px;   
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #7FBF7F ;
+    /*background: none repeat scroll 0 0 #f3f3f3 ;*/
+}
+.thcoloredtable{
+    background-color: #7FBF7F ;
+}
+.titpageresult{
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.ligneniveau1{
+    background-color: #B2D8B2;
+    font-weight: bold;
+}
+.ligneniveau2{
+    background-color: #E5F2E5;
+}
+.ligneniveau3{
+   /* background-color: #E5F2E5;*/
+}
+.tdniveau1{
+    padding-left: 5px;
+}
+.tdniveau2{
+    padding-left: 15px;
+}
+.tdniveau3{
+    padding-left: 30px;
+}
+.tdniveau4{
+    padding-left: 45px;
+}
