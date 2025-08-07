@@ -3,8 +3,23 @@
 <hibernate-configuration>  
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url"> jdbc:mysql://10.10.100.175:3306/webservice_anrpts</property>
-        <property name="hibernate.connection.username">root</property>
+        
+        
+        
+        
+<!--        <property name="hibernate.connection.url"> jdbc:mysql://localhost:3306/webservice_anrpts</property>-->
+        <property name="hibernate.connection.url">
+  jdbc:mysql://localhost:3306/webservice_anrpts?useSSL=false&amp;allowPublicKeyRetrieval=true
+</property>
+<!--     <property name="hibernate.connection.url"> jdbc:mysql://10.10.100.175:3306/webservice_anrpts</property>-->
+
+
+
+        <property name="hibernate.connection.username">sidimed</property>
+<!--        <property name="hibernate.connection.username">root</property>-->
+
+
+
         <property name="hibernate.connection.password">@dministration</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>  
         <property name="connection.pool_size"> 1</property>  
@@ -19,6 +34,9 @@
 
 
         <mapping class="entities.Log" />
+        <mapping class="entities.Entite"/>
+        <mapping class="entities.User"/>
+
          
         
     </session-factory>

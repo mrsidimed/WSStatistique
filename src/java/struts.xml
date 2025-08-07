@@ -12,6 +12,14 @@
             
         </action>
         
+
+        
+        <!-- returns a JSON array of Log objects -->
+        <action name="searchLogs" class="action.SearchAction" method="searchLogs">
+            <result type="json"/>
+        </action>
+        
+        
         <action name="*" class="action.SearchAction" method="{1}" >
             <result type="json">
                 <param name="excludeNullProperties">true</param>
@@ -19,7 +27,44 @@
             </result>
         </action>
         
-        
-        
     </package>
+    
+    
+    
+<!--    <package name="auth" namespace="/" extends="struts-default">
+
+         Login page 
+        <action name="login" class="action.LoginAction">
+            <result name="input">/login.jsp</result>
+            <result name="success" type="redirect">View/accueil.jsp</result>
+        </action>
+
+         Your main JSP (accueil.jsp) 
+        <action name="accueil">
+            <result>View/accueil.jsp</result>
+        </action>
+
+         The JSON action already shown 
+         searchLogs etc. 
+    </package>-->
+    
+ 
+ 
+ <package name="auth" namespace="/" extends="struts-default,json-default">
+        <action name="login" class="action.LoginAction">
+            <result name="success" type="json">
+                Send only ok and msg 
+                <param name="includeProperties">ok,msg</param>
+            </result>
+        </action>
+        <!--       
+        <action name="accueil">
+            <result>View/accueil.jsp</result>
+            
+            
+        </action>-->
+
+    </package>
+    
+    
 </struts>

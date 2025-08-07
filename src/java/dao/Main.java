@@ -21,7 +21,7 @@ public class Main {
         
        
         WebServiceDAO dao = WebServiceDAO.getInstance();
-        String resu = dao.getStatistique(5  , "2017-01-01", "2017-02-01");
+        String resu = dao.getStatistique(5  , "2017-01-01", "2017-02-01", true);
         System.out.println("resu = "+  resu);
 
     }

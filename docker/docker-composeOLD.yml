@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  identification-db:
+    build:
+      context: ./identification-db
+    env_file: .env
+    volumes:
+      - db_data:/var/lib/mysql
+    networks: [identnet]
+
+  identification-be:
+    build:
+      context: ./identification-be
+    env_file: .env
+    depends_on:
+      - identification-db
+    ports:
+      - "${API_PORT}:3000"   # localhost:3000 →
+    networks: [identnet]
+
+  identification-fe:
+    build:
+      context: ./identification-fe
+    env_file: .env
+    depends_on:
+      - identification-be
+    ports:
+      - "${FRONT_PORT}:80"   # localhost:4200 →
+    networks: [identnet]
+
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin:5           # official image
+      container_name: identification-pma
+      depends_on:
+        - identification-db
+      environment:
+        PMA_HOST: identification-db           # service-name of MySQL
+        PMA_PORT: 3306
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        PMA_ARBITRARY: 0                      # disallow random servers (safer)
+        UPLOAD_LIMIT: 32M                     # optional: bigger import size
+      ports:
+        - "8081:80"                           # http://localhost:8081
+      networks: [identnet]
+
+networks:
+  identnet:
+
+volumes:
+  db_data:

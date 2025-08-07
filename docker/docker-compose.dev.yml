@@ -1,0 +1,49 @@
+services:
+  # ------------- DATABASE (hardly ever changes) -------------
+
+  identification-db:
+    platform: linux/amd64        # <‑‑ add this to pull the x86_64 image on Apple Silicon
+    build:
+      context: ./identification-db
+      dockerfile: Dockerfile
+    container_name: identification-db
+    env_file: .env
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - identnet
+
+
+
+
+ 
+  # ---------- PHPMyAdmin UI (off-the-shelf image) ------------
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5
+    container_name: identification-pma
+    depends_on:
+      - identification-db
+    environment:
+      PMA_HOST: identification-db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      PMA_ARBITRARY: 0
+      UPLOAD_LIMIT: 32M
+    ports:
+      - "8081:80"
+    networks: [identnet]
+
+
+
+ 
+  
+
+ 
+networks:
+  identnet:
+
+volumes:
+  db_data:      # ← top-level catalog must be a mapping
+  node_modules:

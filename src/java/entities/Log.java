@@ -8,10 +8,15 @@ package entities;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 /**
@@ -19,14 +24,29 @@ import javax.persistence.Temporal;
  * @author PC
  */
 @Entity
+@Table(name = "Log")
 public class Log {
+
+    /**
+     * @return the diffMilliSecs
+     */
+    public int getDiffMilliSecs() {
+        return diffMilliSecs;
+    }
+
+    /**
+     * @param diffMilliSecs the diffMilliSecs to set
+     */
+    public void setDiffMilliSecs(int diffMilliSecs) {
+        this.diffMilliSecs = diffMilliSecs;
+    }
 
     public Log() {
     }
     
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
-    private int idEntite;
+    //private int idEntite;
     private Timestamp timestamp;
     private String nni;
     private String ipAdress;
@@ -34,6 +54,19 @@ public class Log {
     
     private int  status; // =1 si les donnees ont ete retournees =0 sinon
     private String numtel;
+    
+    private int  diffMilliSecs; 
+    
+    @Column(name = "idEntite")      // ← DB column that stores the FK
+    private int idEntite;            // keep it if you still need the raw id
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idEntite",                  // same column
+                insertable = false, updatable = false)
+    private Entite entite;            // ← new field
+
+    public Entite getEntite()              { return entite; }
+    public void   setEntite(Entite entite) { this.entite = entite; }
     
   
     
