@@ -103,7 +103,7 @@
                     $('#statistique').toggle(false);
                     $('#identification').toggle(false);
                     
-                    //location.reload();
+                    location.reload();
                     // …then redirect or refresh
                 });
 

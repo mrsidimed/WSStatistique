@@ -1,5 +1,6 @@
 package action;
 
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.WebServiceDAO;
 import entities.Log;

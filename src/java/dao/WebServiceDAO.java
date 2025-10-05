@@ -8,6 +8,15 @@ package dao;
 
 import entities.Log;
 
+
+
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -66,8 +75,10 @@ public class WebServiceDAO {
             return java.util.Collections.emptyList();
         }
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = null;
         try {
+            
+            session = HibernateUtil.getSessionFactory().openSession();
 //            StringBuilder hql = new StringBuilder("from Log l where ");
 //            List<String> clauses = new ArrayList<>();
 //
@@ -110,9 +121,15 @@ public class WebServiceDAO {
  
 
             return q.list();
+        } catch (Exception e) {
+
+            return null;
+
         } finally {
-            session.close();
-        }
+            if (session != null) {
+                session.close();
+            }
+    }
     }
 
     public String getStatistique(int idEntite,
@@ -141,8 +158,12 @@ public class WebServiceDAO {
                 + "  and l.timestamp  between :start and :end "
                 + "group by l.status";
 
-        List<Integer> statuses = List.of(1, 2, 4);   // <<-- keep all here
+       // List<Integer> statuses = List.of(1, 2, 4);   // <<-- keep all here
+        
+        List<Integer> statuses = Collections.unmodifiableList(Arrays.asList(1, 2, 4));
 
+      
+        
         Map<Integer, Long> counters = new HashMap<>(3);
 
         Session session = HibernateUtil.getSessionFactory().openSession();

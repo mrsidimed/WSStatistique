@@ -12,15 +12,30 @@ import org.hibernate.Session;
  * @author sidimed
  */
 public class UserDAO {
+
     private static final UserDAO INSTANCE = new UserDAO();
-    public static UserDAO getInstance() { return INSTANCE; }
+
+    public static UserDAO getInstance() {
+        return INSTANCE;
+    }
 
     public User findByUsername(String username) {
-        Session s = HibernateUtil.getSessionFactory().openSession();
+        Session s = null;
         try {
+            s = HibernateUtil.getSessionFactory().openSession();
             return (User) s.createQuery("from User u where u.username = :u")
-                            .setParameter("u", username)
-                            .uniqueResult();
-        } finally { s.close(); }
+                    .setParameter("u", username)
+                    .uniqueResult();
+        } catch (Exception e) {
+
+            return null;
+
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+
+        }
+
     }
 }
